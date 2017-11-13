@@ -4,7 +4,7 @@
 $ComName= gc env:computername
 IF (($ComName -Like '*CORP*') -or ($ComName -Like '*40NY1*'))
 {
-$smtpServer = "nycmail.ideal.corp.local"
+$smtpServer = "MAILSERVER"
 }
 IF ($ComName -Like '*20NY1*' -OR $ComName -Like '*30NY1*' -OR $ComName -Like '*60NY1*' -OR $ComName -Like '*70NY1*' -OR $ComName -Like '*30NY1*' -OR $ComName -Like '*1NJ2*')
 {
