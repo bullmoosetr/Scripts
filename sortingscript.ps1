@@ -21,4 +21,4 @@ $files | Where-Object {$_.DateTime -match $zip} | Copy-Item -Destination $zip -V
 }
 
 
-sortFile("C:\Users\lafferic\Desktop\*") -verbose
+sortFile("C:\*") -verbose
