@@ -1,4 +1,4 @@
-﻿#Tape Expiration and Relabeling GUI APPLICATION 
+﻿#Tape Expiration and Relabeling GUI APPLICATION Symantec Backup Tape System
 #Created by Eric Laff
 
 [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing") 
