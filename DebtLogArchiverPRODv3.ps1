@@ -1,25 +1,19 @@
-﻿#Debt Log Archiver
+﻿# Log Archiver
 #Created by Eric Laff
 
 ##########################################################Email Settings##########################################################
 ##########################################################Determine SMTP Server##################################################
 $ComName= gc env:computername
-IF (($ComName -Like '*CORP*') -or ($ComName -Like '*40NY1*'))
+IF (($ComName -Like '**') -or ($ComName -Like '**'))
 {
-$smtpServer = "nycmail.ideal.corp.local"
+$smtpServer = ""
 }
-IF ($ComName -Like '*20NY1*' -OR $ComName -Like '*30NY1*' -OR $ComName -Like '*60NY1*' -OR $ComName -Like '*70NY1*' -OR $ComName -Like '*30NY1*' -OR $ComName -Like '*1NJ2*')
-{
-$smtpServer = "smtp-pmta"
-}
-IF ($ComName -Like '*1DC3*' )
-{
-$smtpServer = "smtp-dc3"
+
 }
 ##########################################################Send To & Subject######################################################
-$smtpFrom = 'NOCTasks@i-Deal.com'
-$smtpTo = 'FIDev-.Net@i-deal.com'
-$smtpCC = 'NOC@ipreo.com'
+$smtpFrom = ''
+$smtpTo = ''
+$smtpCC = ''
 $messageSubject= $ComName + ' - IssueBook ASP IIS Logs - Grooming Job (All Folders)'
 $EStart="<font face='verdana' size='2'>"
 $EEnd="</Font>"
