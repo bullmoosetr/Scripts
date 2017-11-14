@@ -1,1 +1,1 @@
-$data = Invoke-RestMethod -Method Get -Uri 'https://prtg-us.ideal.corp.local//api/table.xml?content=devices&output=csvtable&columns=device,host&username=ericlaff&password=Password1'
+$data = Invoke-RestMethod -Method Get -Uri 'https://prtg//api/table.xml?content=devices&output=csvtable&columns=device,host&username=USERNAME&password=PASSWORD'
