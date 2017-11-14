@@ -6,7 +6,7 @@
 $list = Get-Content -Path "D:\Temp\servers.txt" 
 
 #--- Downloads latest Universal Forwadering from FTP ---# 
-$ftpFile = "ftp://10.27.5.99/NOC/Splunk/UniForwarding.msi" 
+$ftpFile = "ftp://" 
 $ftpClient = New-Object system.Net.WebClient
 $localPath = "D:\Temp\UniForwarding.msi" 
 $uri = New-Object System.Uri($ftpFile)
@@ -31,7 +31,7 @@ foreach($server in $list)
     if(Test-Path $destPath)
     {    
         Copy-Item $localPath -Destination $destPath 
-        $args = { & cmd /c "msiexec.exe /i D:\rm\UniForwarding.msi" /qn AGREETOLICENSE=Yes DEPLOYMENT_SERVER=10.27.5.122:8089 RECEIVING_INDEXER=10.27.5.120:9997 /log D:\rm\MSI_Install.log /quiet}
+        $args = { & cmd /c "msiexec.exe /i D:\rm\UniForwarding.msi" /qn AGREETOLICENSE=Yes DEPLOYMENT_SERVER=$DEPLOYMENT_SERVER RECEIVING_INDEXER=$INDEXER_IP /log D:\rm\MSI_Install.log /quiet}
         $PSSession = New-PSSession -ComputerName $server 
         Invoke-Command -Session $PSSession -ScriptBlock $args
         $timeStamp = Get-Date -Format ("MM/dd/yyyy hh:mm:ss") 
