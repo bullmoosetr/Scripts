@@ -42,7 +42,7 @@ def get_args():
         )
     argument_parser.add_argument(
         "--sso_proxy_url",
-        default='https://awsazuressoproxy.ipreo.com/',
+        default='***place url here***',
         help='url of aws azure sso proxy'
         )
     args = argument_parser.parse_args()

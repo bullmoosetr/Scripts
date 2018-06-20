@@ -3,8 +3,8 @@
 $OutputXml = $null
 $totalCount = $null
 
-$SourceFile = Get-Content 'C:\Users\lafferic\Desktop\BackLogTest.txt' | select -Last 11 -Skip 1
-$TimeStamp = get-content 'C:\Users\lafferic\Desktop\BackLogTest.txt' | select -first 1  -skip 11
+$SourceFile = Get-Content 'C:\' | select -Last 11 -Skip 1
+$TimeStamp = get-content 'C:\' | select -first 1  -skip 11
 
 $time1 = $TimeStamp.Substring(10, 9)
 $time2 = Get-Date -Format HH:mm:ss
