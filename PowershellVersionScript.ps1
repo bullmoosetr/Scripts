@@ -31,7 +31,7 @@ Get-Host -PipelineVariable $InputObject.Machine -Verbose
 
 
 
-$Servers = {'ny-corp-noc1','ny-corp-noc2','ny-corp-noc3'}
+$Servers = 
 foreach ($server in $Servers)
 {
 $a = @{Expression=$server;Label="Server Name"; width=25}
