@@ -108,7 +108,7 @@ catch {
     
 try {
     
-    GetContent -ContentPath "\\uk.corp.local\STORAGE\PROJECTS\IT\GNOC\PRTG\BackLogDocs\BacklogCountUKtoCT.txt" | GetLastLine | CheckTimeStamp
+    GetContent -ContentPath "" | GetLastLine | CheckTimeStamp
 
 }
 catch {
