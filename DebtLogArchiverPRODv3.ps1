@@ -14,7 +14,7 @@ $smtpServer = ""
 $smtpFrom = ''
 $smtpTo = ''
 $smtpCC = ''
-$messageSubject= $ComName + ' - IssueBook ASP IIS Logs - Grooming Job (All Folders)'
+$messageSubject= $ComName + ' -  - Grooming Job (All Folders)'
 $EStart="<font face='verdana' size='2'>"
 $EEnd="</Font>"
 ##################################################################################################################################################################
@@ -31,9 +31,9 @@ $destination = "D:\Temp\"
 #Places files into an array
 $directory = @("D:\Temp")
 #Search Directory for the Filetypes
-$source = @(Get-ChildItem "D:\Temp"  | Where-Object {$_.Fullname -match $YDate -and $_.Fullname -notmatch '.zip'}  | Where-Object {$_.Name -like "*log*"} | Copy-Item -Destination "D:\Temp\TempNOCfolder") 
+$source = @(Get-ChildItem "D:\Temp"  | Where-Object {$_.Fullname -match $YDate -and $_.Fullname -notmatch '.zip'}  | Where-Object {$_.Name -like "*log*"} | Copy-Item -Destination "D:\Temp\") 
 #Temporary Destination Directy. This is were the files are zipped from after being copied from D:\Temp
-$files = "D:\Temp\TempNOCfolder" 
+$files = "" 
 
 #Sleep before deleting
 Start-Sleep -s 20 -Verbose
@@ -48,7 +48,7 @@ Add-Type -Assembly "System.IO.Compression.FileSystem"
 Start-Sleep -s 20
 
 #Delete Temp Files from Temp Folder
-Get-ChildItem "D:\Temp\TempNOCfolder" | Remove-Item -Recurse 
+Get-ChildItem "D:\Temp\" | Remove-Item -Recurse 
 
 #Delete the files from previous day
 $delete = Get-ChildItem "D:\Temp" | Where-Object {$_.Fullname -match $YDate -and $_.Fullname -notmatch '.zip'}  | Where-Object{$_.Name -like "*Bridge*" -or $_.Name -like "*Events*" -or $_.Name -like "*Integration*" -or $_.Name -like "*Phx*" -or $_.Name -like "*Order*" -or $_.Name -like "*Schedule*" -or $_.Name -like "*Retries*" -or $_.Name -like "*log*"}  |Remove-Item 
