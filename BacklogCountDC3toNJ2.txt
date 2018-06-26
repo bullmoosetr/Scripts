@@ -21,13 +21,13 @@ if ($VerboseMessage -like "*The replicated folder has a backlog of files*")
 {
     
     $Status = $outputString.Substring(0,85)
-    Add-Content \\ideal.prod.local\STORAGE\~NOC\DFSBacklogCheckLog\BacklogCountDC3.txt  "1:$Status $Date"
+    Add-Content   "1:$Status $Date"
    
 }
 elseif ($VerboseMessage -like "*No backlog for the replicated folder named*")
 {
     
-    Add-Content \\ideal.prod.local\STORAGE\~NOC\DFSBacklogCheckLog\BacklogCountDC3.txt "0:OK $Date" 
+    Add-Content  "0:OK $Date" 
     break
 }
 }
@@ -36,7 +36,7 @@ catch
 {
     #Write-Host $Error
     
-    Add-Content \\uk.corp.local\STORAGE\PROJECTS\IT\GNOC\PRTG\BackLogDocs\BacklogCountError.txt "$Date" "$Error"
+    Add-Content  "$Date" "$Error"
 
 }
 }
