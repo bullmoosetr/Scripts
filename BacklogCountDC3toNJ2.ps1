@@ -6,7 +6,7 @@ function BacklogCount {
         $VerbosePreference = 'Continue'
         for ($i = 0; $i -le 5; $i++) {
             Start-Sleep -Seconds 5
-             $VerboseMessage = (Get-DfsrBacklog -GroupName "*" -SourceComputerName $env:COMPUTERNAME -DestinationComputerName "DFS1NJ2US03" -Verbose 4>&1)  
+             $VerboseMessage = (Get-DfsrBacklog -GroupName "*" -SourceComputerName $env:COMPUTERNAME -DestinationComputerName "" -Verbose 4>&1)  
             $outputString = $VerboseMessage | Out-String 
 
             
@@ -16,12 +16,12 @@ function BacklogCount {
     
                 $Status = $outputString.Substring(0, 85)
                 $LogCount = $outputString.Substring(86, 1)
-                Add-Content \\ideal.prod.local\STORAGE\~NOC\DFSBacklogCheckLog\BacklogCountDC3.txt  "$LogCount : $Status $Date"
+                Add-Content   "$LogCount : $Status $Date"
    
             }
             elseif ($VerboseMessage -like "*No backlog for the replicated folder named*") {
     
-                Add-Content \\ideal.prod.local\STORAGE\~NOC\DFSBacklogCheckLog\BacklogCountDC3.txt "0:OK $Date" 
+                Add-Content  "0:OK $Date" 
                 break
             }
         }
@@ -29,7 +29,7 @@ function BacklogCount {
     catch {
         #Write-Host $Error
     
-        Add-Content \\ideal.prod.local\STORAGE\~NOC\DFSBacklogCheckLog\ErrorsDC3toNJ2 "$Date" "$Error"
+        Add-Content  "$Date" "$Error"
 
     }
 }
