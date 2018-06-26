@@ -51,16 +51,6 @@ $DropDownArray = @("Expire","Relabel")
 $UserSelect1 = $DropDownArray[0]
 $UserSelect2 = $DropDownArray[1]
 
-
-
-
-
-#$DirectoryCommand =  "cd D:\Veritas\Netbackup\bin\admincmd"
-#$ExpireCommand =  ".\bpexpdate -m $i -d 0 -host bkup41ny1us01 -force"
-#$RelabelCommand =  ".\bplabel -ev $i -d hcart3 -p Scratch" 
-
-
-
 #Dropdown Function that is called when the button is clicked
 function DropDownChoice{
 ###########################Error Checks###########################################k
@@ -70,9 +60,9 @@ $outputBox.Text = "Starting... `n"
 $Selected = $DropDown.SelectedItem.ToString()
 $ClearArray
 $ClearOutput
-$ClearOutput = Clear-Content -Path C:\Users\lafferic\Desktop\Incorrect-Tapes.txt
+$ClearOutput = Clear-Content -Path 
 $ClearArray = $IncorrectArray.clear()
-$tapes = Get-Content C:\Users\lafferic\Desktop\Tapes.txt 
+$tapes = Get-Content  
 $tapesArray = New-Object System.Collections.ArrayList
 $IncorrectArray = New-Object System.Collections.ArrayList
 [Collections.Generic.List[String]]$IncorrectArray
@@ -97,7 +87,7 @@ $IncorrectArray.Add($i)
 $tapesArray.Remove($i)
 }
 }
-Add-Content C:\Users\lafferic\Desktop\Incorrect-Tapes.txt $IncorrectArray
+Add-Content 
 ########End of Error Check##################################################
 
 
@@ -110,8 +100,8 @@ $outputBox.Text += "Starting Expiration Process.... `n"
 foreach ($i in $tapesArray){
 #Loops through the text doc and creates an array of all tape numbers
 $CMD = "cmd.exe"
-  cd D:\Veritas\Netbackup\bin\admincmd
- .\"bpexpdate -m $i -d 0 -host bkup41ny1us01 -force"
+  cd 
+ .\"bpexpdate -m $i -d 0 -host  -force"
 Start-Process  -Verb runas $CMD -WindowStyle Hidden
 $Process = Write-Output "Expiring Tape " $i "`n"
 $outputBox.Text += $Process
@@ -122,7 +112,7 @@ $outputBox.Text += $Process
 {
 $outputBox.Text += "Starting the Relabeling Process.... `n"
 foreach($i in $tapesArray){
- cd D:\Veritas\Netbackup\bin\admincmd
+ cd 
 .\bplabel -ev $i -d hcart3 -p Scratch
 Start-Process -Verb runas $CMD -WindowStyle Hidden
 $RelabelingProcess += Write-Output "Relabeling Tape" $i "`n" 
@@ -135,8 +125,8 @@ $outputBox.Text += $Finished
 }
 
 ###########End Of Function##############################################
-$Date =  Get-Date -Format "'Expired/Relabled On:'MMM/dd/yy" | Add-Content 'C:\Users\lafferic\Desktop\Tape Log.txt'
-$Log = Get-Content -Path 'C:\Users\lafferic\Desktop\Tapes.txt' | Add-Content -Path 'C:\Users\lafferic\Desktop\Tape Log.txt' 
+$Date =  Get-Date -Format "'Expired/Relabled On:'MMM/dd/yy" | Add-Content ''
+$Log = Get-Content -Path '' | Add-Content -Path '' 
 #Loops through and adds the strings to the combobox(dropdown menu)
 ForEach ($Item in $DropDownArray) {
 $DropDown.Items.Add($Item)
