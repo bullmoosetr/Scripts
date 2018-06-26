@@ -165,4 +165,4 @@ catch {
     exit 4
 }
 
-GetContent -ContentPath C:\Users\lafferic\Desktop\BackLogTest.txt| GetLastLine 
+GetContent -ContentPath | GetLastLine 
