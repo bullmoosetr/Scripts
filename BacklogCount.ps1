@@ -11,7 +11,7 @@ $VerbosePreference = 'Continue'
 for ($i = 0;$i -le 5;$i++)
 {
 
-    $computers = @("STOR45CT1ZA01")
+    $computers = @("")
     foreach($computer in $computers){$VerboseMessage = (Get-DfsrBacklog -GroupName "*" -SourceComputerName $env:COMPUTERNAME -DestinationComputerName $computer -Verbose 4>&1)   } 
     $Status
     $Date = Get-Date
@@ -19,12 +19,12 @@ if ($VerboseMessage -like "*The replicated folder has a backlog of files*")
 {
     
     $Status
-    Add-Content \\uk.corp.local\STORAGE\PROJECTS\IT\GNOC\PRTG\BackLogDocs\BacklogCount.txt  "1:$VerboseMessage $Date"
+    Add-Content   "1:$VerboseMessage $Date"
    
 }
 elseif ($VerboseMessage -like "*No backlog for the replicated folder named*")
 {
-    Add-Content \\uk.corp.local\STORAGE\PROJECTS\IT\GNOC\PRTG\BackLogDocs\BacklogCount.txt "0:OK $Date" 
+    Add-Content  "0:OK $Date" 
     break
 }
 }
@@ -32,7 +32,7 @@ elseif ($VerboseMessage -like "*No backlog for the replicated folder named*")
 catch
 {
 
-    Add-Content \\uk.corp.local\STORAGE\PROJECTS\IT\GNOC\PRTG\BackLogDocs\BacklogCountError.txt $Error $Date
+    Add-Content  $Error $Date
 
 }
 }
