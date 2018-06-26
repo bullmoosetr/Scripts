@@ -1,16 +1,16 @@
 ﻿
-$logs = Get-ChildItem -Path C:\Users\lafferic\Desktop\Scripts\*.txt
-$log = Get-ChildItem -Path C:\Users\lafferic\Desktop\Scripts\ -recurse | where {((Get-Date)-$_.LastWriteTime).days -ge 30}
+$logs = Get-ChildItem -Path 
+$log = Get-ChildItem -Path  -recurse | where {((Get-Date)-$_.LastWriteTime).days -ge 30}
 for($i=0;$i -lt $logs.Count;$i++ ){
 $logs[$i]
 $log | Remove-Item -Recurse -Force}
 
 $Error.Clear()
-$Status = " FixEdge Logs - OK"
+$Status = "  Logs - OK"
  
  $smtpserver = "smtp-pmta"
  
- $To = "GNOC@ipreo.com"
+ $To = ""
 
  if ($Error.Count -gt 0){
  $Status = " Tomcat log grooming -NOT OK"
@@ -21,4 +21,4 @@ $Status = " FixEdge Logs - OK"
  }
 
 
- Send-MailMessage -SmtpServer $smtpserver -To $To -Cc $cc -from "NOCTasks@ipreo.com" -Subject "$env:COMPUTERNAME $Status" -BodyAsHtml -Body $MailBody
+ Send-MailMessage -SmtpServer $smtpserver -To $To -Cc $cc -from "" -Subject "$env:COMPUTERNAME $Status" -BodyAsHtml -Body $MailBody
