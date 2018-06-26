@@ -2,11 +2,11 @@
 ##########################################################Email Settings##########################################################
 ##########################################################Determine SMTP Server##################################################
 $ComName= gc env:computername
-IF (($ComName -Like '*CORP*') -or ($ComName -Like '*40NY1*'))
+IF (($ComName -Like '**') -or ($ComName -Like '**'))
 {
 $smtpServer = "MAILSERVER"
 }
-IF ($ComName -Like '*20NY1*' -OR $ComName -Like '*30NY1*' -OR $ComName -Like '*60NY1*' -OR $ComName -Like '*70NY1*' -OR $ComName -Like '*30NY1*' -OR $ComName -Like '*1NJ2*')
+IF ($ComName -Like '**')
 {
 $smtpServer = "smtp-pmta"
 }
@@ -15,22 +15,22 @@ IF ($ComName -Like '*1DC3*' )
 $smtpServer = "smtp-dc3"
 }
 ##########################################################Send To & Subject######################################################
-$smtpFrom = 'NOCTasks@i-Deal.com'
-$smtpTo = 'NOC@ipreo.com'
-$messageSubject= $ComName + ' D:\ProgramData\Paessler\PRTG Network Monitor\Logs(Debug) - Grooming Job (All Folders)'
+$smtpFrom = ''
+$smtpTo = ''
+$messageSubject= $ComName + ' (Debug) - Grooming Job (All Folders)'
 $EStart="<font face='verdana' size='2'>"
 $EEnd="</Font>"
 ##################################################################################################################################################################
 ##################################################################################################################################################################
 $Checker = 0
 #Directory
-$directory = "D:\ProgramData\Paessler\PRTG Network Monitor\Logs (Debug)"
+$directory = " (Debug)"
 
-Get-Service "PRTGCoreService" | Where-Object {$_.Status -eq "Running"} | Stop-Service | Start-Sleep -s 60 | Get-Service "PRTGProbeService" | Where-Object {$_.Status -eq "Running"} | Stop-Service
+Get-Service "" | Where-Object {$_.Status -eq "Running"} | Stop-Service | Start-Sleep -s 60 | Get-Service "PRTGProbeService" | Where-Object {$_.Status -eq "Running"} | Stop-Service
 
-$source = Get-ChildItem "D:\ProgramData\Paessler\PRTG Network Monitor\Logs (Debug)" | Where-Object{$_.Name -like "snmpdebug 0.log" -or $_.Name -like "metasnmpdebug 0.log"} | Remove-Item
+$source = Get-ChildItem "\Paessler\PRTG Network Monitor\Logs (Debug)" | Where-Object{$_.Name -like "snmpdebug 0.log" -or $_.Name -like "metasnmpdebug 0.log"} | Remove-Item
 
-Get-Service "PRTGCoreService" | Where-Object {$_.Status -eq "Stopped"} | Stop-Service | Start-Sleep -s 60 | Get-Service "PRTGProbeService" | Where-Object {$_.Status -eq "Stopped"} | Start-Service
+Get-Service "" | Where-Object {$_.Status -eq "Stopped"} | Stop-Service | Start-Sleep -s 60 | Get-Service "PRTGProbeService" | Where-Object {$_.Status -eq "Stopped"} | Start-Service
 
 foreach ($file in $directory)
 {
