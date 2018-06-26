@@ -1,6 +1,6 @@
 ﻿try
 {
-$TextContent = Get-Content -Path \\uk.corp.local\STORAGE\PROJECTS\IT\GNOC\PRTG\BackLogDocs\BacklogCount.txt | select -Last 1
+$TextContent = Get-Content -Path  | select -Last 1
 ############################################################################################################################
 
 
